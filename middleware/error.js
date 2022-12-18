@@ -1,0 +1,9 @@
+const {errCustom} = require('../errors/custom-error')
+const errorHandle = (err,req,res,next) => {
+   if(err instanceof errCustom){
+      return res.status(err.statusCode).json({msg: err.message})
+   }
+   return res.status(500).json({msg:'Something went wrong, please try again' })
+}
+
+module.exports = errorHandle
